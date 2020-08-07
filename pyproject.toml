@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "biasedrandomforest"
+version = "0.1.0"
+description = "Biased Random Forest implementation"
+authors = ["Rodrigo Parra <contact@rodrigo-parra.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+scikit-learn = "^0.23.2"
+
+[tool.poetry.dev-dependencies]
+pandas = "^1.1.0"
+black = "^19.10b0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
