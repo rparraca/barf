@@ -3,6 +3,7 @@ from sklearn.neighbors import NearestNeighbors
 from sklearn.utils import as_float_array
 import numpy as np
 
+
 class BiasedRandomForestClassifier(object):
     def __init__(
         self,
@@ -133,16 +134,13 @@ class BiasedRandomForestClassifier(object):
         if np.array_equal(self.rf1.classes_, self.rf2.classes_):
             self.classes_ = self.rf1.classes_
         else:
-            raise("Error: forests have different classes")
+            raise ("Error: forests have different classes")
 
     def predict(self, X):
         y_prob = self.predict_proba(X)
-        return np.where(
-            y_prob[:, 0] < y_prob[:, 1], self.classes_[1], self.classes_[0]
-        )
+        return np.where(y_prob[:, 0] < y_prob[:, 1], self.classes_[1], self.classes_[0])
 
     def predict_proba(self, X):
         return self.p_rf_split * self.rf1.predict_proba(X) + (
             1 - self.p_rf_split
         ) * self.rf2.predict_proba(X)
-
